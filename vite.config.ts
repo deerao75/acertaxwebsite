@@ -6,7 +6,7 @@ import {defineConfig, loadEnv} from 'vite';
 export default defineConfig(({mode}) => {
   const env = loadEnv(mode, '.', '');
   return {
-    // Set the base path to match your GitHub repository name
+    // This line ensures assets are loaded from the correct sub-directory on GitHub Pages
     base: '/acertaxwebsite/', 
     plugins: [react(), tailwindcss()],
     define: {
