@@ -233,15 +233,15 @@ export default function App() {
       {/* Navigation */}
       <nav className="sticky top-0 z-50 bg-white border-b border-orange-100 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-20 items-center">
+          <div className="flex justify-between h-16 items-center">
             <div 
-              className="flex items-center gap-4 cursor-pointer group"
+              className="flex items-center gap-3 cursor-pointer group"
               onClick={() => setCurrentPage('home')}
             >
-              <img src="/input_file_5.png" alt="Acer Logo" className="h-14 w-auto object-contain" />
+              <img src="/input_file_5.png" alt="Acer Logo" className="h-10 w-auto object-contain" />
               <div className="flex flex-col">
-                <span className="text-2xl font-extrabold tracking-tight text-black font-display leading-none">Acer Tax</span>
-                <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-1">Tax and Corporate Services</span>
+                <span className="text-xl font-extrabold tracking-tight text-black font-display leading-none">Acer Tax</span>
+                <span className="text-[8px] font-bold text-slate-500 uppercase tracking-widest mt-0.5">Tax and Corporate Services</span>
               </div>
             </div>
             
@@ -323,29 +323,29 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-black text-white py-12">
+      <footer className="bg-black text-white py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-            <div className="col-span-1 md:col-span-2 space-y-6">
-              <div className="flex items-center gap-4">
-                <img src="/input_file_5.png" alt="Acer Logo" className="h-12 w-auto object-contain brightness-0 invert" />
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-6">
+            <div className="col-span-1 md:col-span-2 space-y-3">
+              <div className="flex items-center gap-3">
+                <img src="/input_file_5.png" alt="Acer Logo" className="h-10 w-auto object-contain brightness-0 invert" />
                 <div className="flex flex-col">
-                  <span className="text-2xl font-extrabold tracking-tight text-white font-display leading-none">Acer Tax</span>
-                  <span className="text-xs font-bold text-slate-400 uppercase tracking-widest mt-1">Tax and Corporate Services</span>
+                  <span className="text-xl font-extrabold tracking-tight text-white font-display leading-none">Acer Tax</span>
+                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Tax and Corporate Services</span>
                 </div>
               </div>
-              <p className="text-slate-400 max-w-md leading-relaxed text-base">
+              <p className="text-slate-400 max-w-md leading-relaxed text-sm">
                 Expert tax advisory, compliance, and litigation services. Our team of professionals ensures seamless tax solutions for businesses of all sizes.
               </p>
-              <div className="flex gap-6">
-                <a href="https://www.linkedin.com/company/acer-tax-&-corporate-services-llp/" target="_blank" rel="noreferrer" className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-orange-400 transition-all">
-                  <Linkedin className="w-6 h-6" />
+              <div className="flex gap-4">
+                <a href="https://www.linkedin.com/company/acer-tax-&-corporate-services-llp/" target="_blank" rel="noreferrer" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-orange-400 transition-all">
+                  <Linkedin className="w-5 h-5" />
                 </a>
               </div>
             </div>
             <div>
-              <h4 className="text-orange-400 font-bold mb-8 uppercase tracking-widest text-sm">Quick Links</h4>
-              <ul className="space-y-5 text-slate-400 text-base">
+              <h4 className="text-orange-400 font-bold mb-4 uppercase tracking-widest text-xs">Quick Links</h4>
+              <ul className="space-y-2 text-slate-400 text-sm">
                 {navLinks.map(link => (
                   <li key={link.id}>
                     <button onClick={() => setCurrentPage(link.id)} className="hover:text-white transition-colors">{link.name}</button>
@@ -354,22 +354,22 @@ export default function App() {
               </ul>
             </div>
             <div>
-              <h4 className="text-orange-400 font-bold mb-8 uppercase tracking-widest text-sm">Contact</h4>
-              <ul className="space-y-5 text-slate-400 text-base">
-                <li className="flex items-center gap-4">
-                  <Phone className="w-5 h-5 text-orange-400" />
+              <h4 className="text-orange-400 font-bold mb-4 uppercase tracking-widest text-xs">Contact</h4>
+              <ul className="space-y-2 text-slate-400 text-sm">
+                <li className="flex items-center gap-3">
+                  <Phone className="w-4 h-4 text-orange-400" />
                   +91-80-2346-6288
                 </li>
-                <li className="flex items-center gap-4">
-                  <Mail className="w-5 h-5 text-orange-400" />
+                <li className="flex items-center gap-3">
+                  <Mail className="w-4 h-4 text-orange-400" />
                   info@acertax.com
                 </li>
               </ul>
             </div>
           </div>
-          <div className="pt-10 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 text-slate-500 text-sm">
+          <div className="pt-6 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-slate-500 text-[11px]">
             <p>© {new Date().getFullYear()} Acer Tax & Corporate Services LLP. All rights reserved.</p>
-            <div className="flex gap-8">
+            <div className="flex gap-6">
               <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
               <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
             </div>
@@ -384,34 +384,34 @@ function Home({ setPage }: { setPage: (p: Page) => void }) {
   return (
     <>
       {/* Hero */}
-      <section className="relative py-20 lg:py-32 bg-white overflow-hidden">
+      <section className="relative py-8 md:py-12 lg:py-16 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 items-center">
             <motion.div 
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-50 text-orange-500 text-sm font-bold uppercase tracking-widest mb-8">
-                <span className="w-2.5 h-2.5 rounded-full bg-orange-400 animate-pulse" />
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-orange-50 text-orange-500 text-[10px] sm:text-xs font-bold uppercase tracking-widest mb-4 lg:mb-6">
+                <span className="w-2 h-2 rounded-full bg-orange-400 animate-pulse" />
                 Expert Tax Advisory
               </div>
-              <h1 className="text-4xl lg:text-6xl font-bold tracking-tight text-black mb-6 leading-[1.1] font-display">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-black mb-4 leading-[1.1] font-display">
                 Tax. Regulatory. <span className="text-orange-400 underline decoration-yellow-300 decoration-4 underline-offset-8">Corporate.</span>
               </h1>
-              <p className="text-xl text-slate-600 mb-10 leading-relaxed max-w-xl">
+              <p className="text-base lg:text-lg text-slate-600 mb-6 lg:mb-8 leading-relaxed max-w-xl">
                 Expert tax advisory, compliance, and litigation services. Our team of professionals ensures seamless tax solutions for businesses of all sizes.
               </p>
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-wrap gap-3">
                 <button 
                   onClick={() => setPage('services')}
-                  className="bg-orange-400 text-white px-8 py-4 rounded-xl font-bold flex items-center gap-2 hover:bg-orange-500 transition-all shadow-xl shadow-orange-400/20"
+                  className="bg-orange-400 text-white px-6 py-3 rounded-xl font-bold flex items-center gap-2 hover:bg-orange-500 transition-all shadow-lg shadow-orange-400/20 text-sm"
                 >
-                  Our Services <ArrowRight className="w-5 h-5" />
+                  Our Services <ArrowRight className="w-4 h-4" />
                 </button>
                 <button 
                   onClick={() => setPage('about')}
-                  className="bg-white border-2 border-black text-black px-8 py-4 rounded-xl font-bold hover:bg-slate-50 transition-all"
+                  className="bg-white border-2 border-black text-black px-6 py-3 rounded-xl font-bold hover:bg-slate-50 transition-all text-sm"
                 >
                   Learn More
                 </button>
@@ -423,12 +423,12 @@ function Home({ setPage }: { setPage: (p: Page) => void }) {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="relative"
             >
-              <div className="aspect-square bg-yellow-400 rounded-3xl rotate-3 absolute inset-0 -z-10 opacity-20" />
-              <div className="aspect-square bg-orange-500 rounded-3xl -rotate-3 absolute inset-0 -z-10 opacity-10" />
+              <div className="aspect-video lg:aspect-square bg-yellow-400 rounded-2xl rotate-2 absolute inset-0 -z-10 opacity-20" />
+              <div className="aspect-video lg:aspect-square bg-orange-500 rounded-2xl -rotate-2 absolute inset-0 -z-10 opacity-10" />
               <img 
                 src="https://picsum.photos/seed/indian-corporate-meeting/800/800" 
                 alt="Indian Corporate Professionals Discussion" 
-                className="rounded-3xl shadow-2xl object-cover w-full h-full"
+                className="rounded-2xl shadow-xl object-cover w-full h-full aspect-video lg:aspect-square max-h-[400px]"
                 referrerPolicy="no-referrer"
               />
             </motion.div>
@@ -437,16 +437,16 @@ function Home({ setPage }: { setPage: (p: Page) => void }) {
       </section>
 
       {/* Our Journey */}
-      <section className="py-24 bg-white">
+      <section className="py-12 md:py-16 lg:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-4xl font-bold text-black mb-8 font-display">Our Journey</h2>
-              <div className="space-y-6 text-lg text-slate-600 leading-relaxed">
+              <h2 className="text-2xl lg:text-3xl font-bold text-black mb-4 lg:mb-6 font-display">Our Journey</h2>
+              <div className="space-y-3 lg:space-y-4 text-sm lg:text-base text-slate-600 leading-relaxed">
                 <p>
                   Acer Tax & Corporate Services LLP is a firm of professionals with deep technical expertise in indirect taxation, direct taxation, regulatory, real estate, human resources and corporate services.
                 </p>
@@ -457,14 +457,14 @@ function Home({ setPage }: { setPage: (p: Page) => void }) {
                   The team has extensive interactions with various tax & regulatory authorities and has hands-on experience with numerous multi-national clients. We are proactive in understanding the needs and expectations of clients and have wide spread engagement management experience across sectors.
                 </p>
               </div>
-              <div className="mt-10 grid grid-cols-2 gap-8">
+              <div className="mt-6 lg:mt-8 grid grid-cols-2 gap-4 lg:gap-6">
                 <div>
-                  <div className="text-4xl font-bold text-orange-400 mb-2">60+</div>
-                  <div className="text-sm font-bold text-slate-500 uppercase tracking-widest">Years Experience</div>
+                  <div className="text-2xl lg:text-3xl font-bold text-orange-400 mb-1">60+</div>
+                  <div className="text-[10px] lg:text-xs font-bold text-slate-500 uppercase tracking-widest">Years Experience</div>
                 </div>
                 <div>
-                  <div className="text-4xl font-bold text-orange-400 mb-2">100%</div>
-                  <div className="text-sm font-bold text-slate-500 uppercase tracking-widest">Client Delight</div>
+                  <div className="text-2xl lg:text-3xl font-bold text-orange-400 mb-1">100%</div>
+                  <div className="text-[10px] lg:text-xs font-bold text-slate-500 uppercase tracking-widest">Client Delight</div>
                 </div>
               </div>
             </motion.div>
@@ -474,11 +474,11 @@ function Home({ setPage }: { setPage: (p: Page) => void }) {
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="absolute -inset-4 bg-orange-50 rounded-[2rem] -z-10" />
+              <div className="absolute -inset-3 bg-orange-50 rounded-2xl -z-10" />
               <img 
                 src="https://picsum.photos/seed/journey/800/600" 
                 alt="Our Journey" 
-                className="rounded-[2rem] shadow-lg object-cover w-full h-[400px]"
+                className="rounded-2xl shadow-md object-cover w-full h-[250px] lg:h-[350px]"
                 referrerPolicy="no-referrer"
               />
             </motion.div>
@@ -487,26 +487,26 @@ function Home({ setPage }: { setPage: (p: Page) => void }) {
       </section>
 
       {/* Quick Services */}
-      <section className="py-24 bg-slate-50">
+      <section className="py-12 md:py-16 lg:py-20 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6"
+            className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 lg:mb-12 gap-4"
           >
             <div className="max-w-2xl">
-              <h2 className="text-4xl font-bold text-black mb-4 font-display">What We Do</h2>
-              <p className="text-lg text-slate-600 leading-relaxed">We partner with our clients to manage their end-to-end tax and regulatory needs.</p>
+              <h2 className="text-2xl lg:text-3xl font-bold text-black mb-2 font-display">What We Do</h2>
+              <p className="text-sm lg:text-base text-slate-600 leading-relaxed">We partner with our clients to manage their end-to-end tax and regulatory needs.</p>
             </div>
             <button 
               onClick={() => setPage('services')}
-              className="text-orange-500 font-bold flex items-center gap-2 hover:gap-3 transition-all"
+              className="text-orange-500 font-bold flex items-center gap-2 hover:gap-3 transition-all text-sm"
             >
-              View All Services <ArrowRight className="w-5 h-5" />
+              View All Services <ArrowRight className="w-4 h-4" />
             </button>
           </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
             {servicesData.map((service, idx) => (
               <motion.div 
                 key={idx} 
@@ -530,14 +530,14 @@ function Home({ setPage }: { setPage: (p: Page) => void }) {
                     }
                   }, 400); // Increased timeout to ensure page transition completes
                 }}
-                className="bg-white p-8 rounded-2xl border border-slate-100 hover:border-orange-400 transition-all group shadow-sm hover:shadow-xl cursor-pointer"
+                className="bg-white p-6 lg:p-8 rounded-2xl border border-slate-100 hover:border-orange-400 transition-all group shadow-sm hover:shadow-xl cursor-pointer"
               >
-                <div className="w-12 h-12 bg-orange-50 text-orange-400 rounded-xl flex items-center justify-center mb-6 group-hover:bg-orange-400 group-hover:text-white transition-all">
+                <div className="w-10 h-10 lg:w-12 lg:h-12 bg-orange-50 text-orange-400 rounded-xl flex items-center justify-center mb-4 lg:mb-6 group-hover:bg-orange-400 group-hover:text-white transition-all">
                   {service.icon}
                 </div>
-                <h3 className="text-lg font-bold mb-3 font-display leading-tight">{service.title}</h3>
-                <p className="text-slate-500 text-xs leading-relaxed mb-6 line-clamp-3">{service.description}</p>
-                <div className="text-orange-500 font-bold text-xs flex items-center gap-1 group-hover:gap-2 transition-all">
+                <h3 className="text-base lg:text-lg font-bold mb-2 lg:mb-3 font-display leading-tight">{service.title}</h3>
+                <p className="text-slate-500 text-[11px] lg:text-xs leading-relaxed mb-4 lg:mb-6 line-clamp-3">{service.description}</p>
+                <div className="text-orange-500 font-bold text-[11px] lg:text-xs flex items-center gap-1 group-hover:gap-2 transition-all">
                   Learn More <ChevronRight className="w-3 h-3" />
                 </div>
               </motion.div>
@@ -562,19 +562,19 @@ function About() {
   ];
 
   return (
-    <section className="py-24 bg-white">
+    <section className="py-12 md:py-16 lg:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center mb-12 lg:mb-16">
           <motion.div 
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <h1 className="text-5xl font-bold mb-8 font-display leading-tight">Get to Know <span className="text-orange-400">Us</span></h1>
-            <p className="text-2xl text-slate-700 font-medium leading-relaxed mb-8">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 lg:mb-6 font-display leading-tight">Get to Know <span className="text-orange-400">Us</span></h1>
+            <p className="text-lg lg:text-xl text-slate-700 font-medium leading-relaxed mb-4 lg:mb-6">
               Your One-Stop Solution for Tax, Regulatory, and Corporate Excellence.
             </p>
-            <p className="text-lg text-slate-600 leading-relaxed">
+            <p className="text-sm lg:text-base text-slate-600 leading-relaxed">
               Acer Tax & Corporate Services LLP is built on a foundation of trust, excellence, and deep industry knowledge. We pride ourselves on being more than just consultants; we are strategic partners in our clients' growth journeys.
             </p>
           </motion.div>
@@ -584,46 +584,46 @@ function About() {
             viewport={{ once: true }}
             className="relative"
           >
-            <div className="absolute -inset-4 bg-orange-50 rounded-[2rem] -z-10" />
+            <div className="absolute -inset-3 bg-orange-50 rounded-2xl -z-10" />
             <img 
               src="https://picsum.photos/seed/professional-team/800/600" 
               alt="Professional Team" 
-              className="rounded-[2rem] shadow-xl object-cover w-full h-[450px]"
+              className="rounded-2xl shadow-lg object-cover w-full h-[300px] lg:h-[400px]"
               referrerPolicy="no-referrer"
             />
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-24">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6 mb-12 lg:mb-16">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="bg-slate-50 p-10 rounded-3xl border-t-4 border-orange-400 shadow-sm"
+            className="bg-slate-50 p-6 lg:p-8 rounded-2xl border-t-4 border-orange-400 shadow-sm"
           >
-            <h3 className="text-sm font-bold mb-4 uppercase tracking-widest text-orange-500">Our Vision</h3>
-            <p className="text-xl font-semibold text-black leading-relaxed">Client delight with exceptional services and value creation.</p>
+            <h3 className="text-[10px] font-bold mb-3 uppercase tracking-widest text-orange-500">Our Vision</h3>
+            <p className="text-base lg:text-lg font-semibold text-black leading-relaxed">Client delight with exceptional services and value creation.</p>
           </motion.div>
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="bg-slate-50 p-10 rounded-3xl border-t-4 border-slate-900 shadow-sm"
+            className="bg-slate-50 p-6 lg:p-8 rounded-2xl border-t-4 border-slate-900 shadow-sm"
           >
-            <h3 className="text-sm font-bold mb-4 uppercase tracking-widest text-slate-600">Our Mission</h3>
-            <p className="text-xl font-semibold text-black leading-relaxed">To be the preferred service provider on India tax, regulatory and corporate matters.</p>
+            <h3 className="text-[10px] font-bold mb-3 uppercase tracking-widest text-slate-600">Our Mission</h3>
+            <p className="text-base lg:text-lg font-semibold text-black leading-relaxed">To be the preferred service provider on India tax, regulatory and corporate matters.</p>
           </motion.div>
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
-            className="bg-slate-900 p-10 rounded-3xl border-t-4 border-white text-white shadow-xl"
+            className="bg-slate-900 p-6 lg:p-8 rounded-2xl border-t-4 border-white text-white shadow-xl"
           >
-            <h3 className="text-sm font-bold mb-4 uppercase tracking-widest text-slate-400">Our Core Values</h3>
-            <p className="text-xl font-semibold leading-relaxed">Service with excellence, honesty and integrity.</p>
+            <h3 className="text-[10px] font-bold mb-3 uppercase tracking-widest text-slate-400">Our Core Values</h3>
+            <p className="text-base lg:text-lg font-semibold leading-relaxed">Service with excellence, honesty and integrity.</p>
           </motion.div>
         </div>
 
@@ -631,10 +631,10 @@ function About() {
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="bg-slate-50 rounded-[3rem] p-12 lg:p-20 border border-slate-100"
+          className="bg-slate-50 rounded-2xl lg:rounded-[2rem] p-6 md:p-10 lg:p-12 border border-slate-100"
         >
-          <h2 className="text-4xl font-bold mb-12 font-display">Our Value Proposition</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <h2 className="text-2xl lg:text-3xl font-bold mb-6 lg:mb-10 font-display">Our Value Proposition</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
             {valueProps.map((prop, idx) => (
               <motion.div 
                 key={idx} 
@@ -642,12 +642,12 @@ function About() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.05 }}
-                className="flex gap-4 items-start group"
+                className="flex gap-3 items-start group"
               >
-                <div className="mt-1 w-6 h-6 bg-orange-400 rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                  <ChevronRight className="w-4 h-4 text-white" />
+                <div className="mt-1 w-4 h-4 lg:w-5 lg:h-5 bg-orange-400 rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                  <ChevronRight className="w-2.5 h-2.5 lg:w-3 h-3 text-white" />
                 </div>
-                <p className="text-lg text-slate-700 leading-relaxed">{prop}</p>
+                <p className="text-sm lg:text-base text-slate-700 leading-relaxed">{prop}</p>
               </motion.div>
             ))}
           </div>
@@ -659,19 +659,19 @@ function About() {
 
 function Services() {
   return (
-    <section className="py-24 bg-slate-50">
+    <section className="py-12 md:py-16 lg:py-20 bg-slate-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center max-w-3xl mx-auto mb-20"
+          className="text-center max-w-3xl mx-auto mb-10 lg:mb-16"
         >
-          <h1 className="text-5xl font-bold mb-6 font-display leading-tight">Our <span className="text-orange-400">Services</span></h1>
-          <p className="text-slate-600 text-lg leading-relaxed">Comprehensive tax and compliance services to help businesses navigate complex challenges efficiently.</p>
+          <h1 className="text-3xl lg:text-4xl font-bold mb-4 font-display leading-tight">Our <span className="text-orange-400">Services</span></h1>
+          <p className="text-slate-600 text-sm lg:text-base leading-relaxed">Comprehensive tax and compliance services to help businesses navigate complex challenges efficiently.</p>
         </motion.div>
 
-        <div className="grid grid-cols-1 gap-12">
+        <div className="grid grid-cols-1 gap-6 lg:gap-10">
           {servicesData.map((service, idx) => (
             <motion.div 
               key={idx} 
@@ -680,24 +680,24 @@ function Services() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.05 }}
-              className="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-all group"
+              className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-all group"
             >
-              <div className="p-8 lg:p-12">
-                <div className="flex flex-col lg:flex-row gap-12">
+              <div className="p-6 lg:p-10">
+                <div className="flex flex-col lg:flex-row gap-6 lg:gap-10">
                   <div className="lg:w-1/3">
-                    <div className="w-16 h-16 bg-slate-50 text-orange-400 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-orange-400 group-hover:text-white transition-all">
-                      {React.cloneElement(service.icon as React.ReactElement, { className: "w-8 h-8" })}
+                    <div className="w-10 h-10 lg:w-14 lg:h-14 bg-slate-50 text-orange-400 rounded-xl flex items-center justify-center mb-4 lg:mb-6 group-hover:bg-orange-400 group-hover:text-white transition-all">
+                      {React.cloneElement(service.icon as React.ReactElement, { className: "w-5 h-5 lg:w-7 lg:h-7" })}
                     </div>
-                    <h2 className="text-3xl font-bold mb-4 font-display leading-tight text-black">{service.title}</h2>
-                    <p className="text-slate-500 text-sm leading-relaxed">{service.description}</p>
+                    <h2 className="text-xl lg:text-2xl font-bold mb-3 font-display leading-tight text-black">{service.title}</h2>
+                    <p className="text-slate-500 text-[13px] leading-relaxed">{service.description}</p>
                   </div>
-                  <div className="lg:w-2/3 lg:pl-12 lg:border-l border-slate-100">
-                    <h3 className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-8">Key Offerings</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                  <div className="lg:w-2/3 lg:pl-10 lg:border-l border-slate-100">
+                    <h3 className="text-[9px] lg:text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-4 lg:mb-6">Key Offerings</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-2.5 lg:gap-y-3">
                       {service.details.map((detail, dIdx) => (
-                        <div key={dIdx} className="flex gap-3 items-start">
+                        <div key={dIdx} className="flex gap-2.5 items-start">
                           <div className="mt-1.5 w-1.5 h-1.5 bg-orange-400 rounded-full flex-shrink-0" />
-                          <p className="text-slate-600 text-sm leading-relaxed">{detail}</p>
+                          <p className="text-slate-600 text-[12px] lg:text-[13px] leading-relaxed">{detail}</p>
                         </div>
                       ))}
                     </div>
@@ -716,30 +716,30 @@ function Team() {
   const [selectedMember, setSelectedMember] = useState<typeof teamData[0] | null>(null);
 
   return (
-    <section className="py-24 bg-white">
+    <section className="py-12 md:py-16 lg:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="max-w-3xl mb-20"
+          className="max-w-3xl mb-10 lg:mb-16"
         >
-          <h1 className="text-5xl font-bold mb-8 font-display leading-tight">Passionate. Committed. <span className="text-orange-400">Experienced.</span></h1>
-          <p className="text-xl text-slate-600 leading-relaxed">Meet our expert team of tax professionals dedicated to delivering top-tier tax and compliance solutions.</p>
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 lg:mb-6 font-display leading-tight">Passionate. Committed. <span className="text-orange-400">Experienced.</span></h1>
+          <p className="text-base lg:text-lg text-slate-600 leading-relaxed">Meet our expert team of tax professionals dedicated to delivering top-tier tax and compliance solutions.</p>
         </motion.div>
 
-        <div className="flex flex-col gap-12">
+        <div className="flex flex-col gap-6 lg:gap-10">
           {/* First Row: 3 Members */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-10">
             {teamData.slice(0, 3).map((member, idx) => (
               <TeamCard key={idx} member={member} idx={idx} onClick={() => { setSelectedMember(member); }} />
             ))}
           </div>
           
           {/* Second Row: 2 Members Centered */}
-          <div className="flex flex-wrap justify-center gap-12">
+          <div className="flex flex-wrap justify-center gap-6 lg:gap-10">
             {teamData.slice(3).map((member, idx) => (
-              <div key={idx} className="w-full sm:w-[calc(50%-24px)] lg:w-[calc(33.333%-32px)]">
+              <div key={idx} className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-27px)]">
                 <TeamCard member={member} idx={idx + 3} onClick={() => { setSelectedMember(member); }} />
               </div>
             ))}
@@ -832,15 +832,15 @@ function TeamCard({ member, idx, onClick }: any) {
           className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
           referrerPolicy="no-referrer"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-8">
-          <div className="bg-orange-400 text-white p-3 rounded-xl shadow-lg">
-            <ArrowRight className="w-6 h-6" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6 lg:p-8">
+          <div className="bg-orange-400 text-white p-2 lg:p-3 rounded-xl shadow-lg">
+            <ArrowRight className="w-5 h-5 lg:w-6 lg:h-6" />
           </div>
         </div>
       </div>
-      <div className="p-8">
-        <h3 className="text-2xl font-bold text-black mb-2 font-display">{member.name}</h3>
-        <p className="text-orange-500 font-bold text-sm uppercase tracking-widest">{member.role}</p>
+      <div className="p-6 lg:p-8">
+        <h3 className="text-xl lg:text-2xl font-bold text-black mb-1 lg:mb-2 font-display">{member.name}</h3>
+        <p className="text-orange-500 font-bold text-[11px] lg:text-sm uppercase tracking-widest">{member.role}</p>
       </div>
     </motion.div>
   );
@@ -848,36 +848,36 @@ function TeamCard({ member, idx, onClick }: any) {
 
 function Contact() {
   return (
-    <section className="py-24 bg-white">
+    <section className="py-12 md:py-16 lg:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <h1 className="text-5xl font-bold mb-8 font-display leading-tight">Contact <span className="text-orange-400">Us</span></h1>
-            <p className="text-xl text-slate-600 mb-12 leading-relaxed">
+            <h1 className="text-3xl lg:text-4xl font-bold mb-4 lg:mb-6 font-display leading-tight">Contact <span className="text-orange-400">Us</span></h1>
+            <p className="text-base lg:text-lg text-slate-600 mb-6 lg:mb-10 leading-relaxed">
               We are here to help you with your tax, regulatory, and corporate needs. Reach out to us for expert guidance.
             </p>
             
-            <div className="space-y-6">
-              <div className="flex items-center gap-6 p-6 rounded-2xl bg-slate-50 border border-slate-100 shadow-sm">
-                <div className="w-14 h-14 bg-orange-400 rounded-xl flex items-center justify-center text-white shadow-lg shadow-orange-400/20">
-                  <Phone className="w-7 h-7" />
+            <div className="space-y-3 lg:space-y-4">
+              <div className="flex items-center gap-3 lg:gap-4 p-4 lg:p-5 rounded-xl bg-slate-50 border border-slate-100 shadow-sm">
+                <div className="w-10 h-10 lg:w-12 lg:h-12 bg-orange-400 rounded-lg flex items-center justify-center text-white shadow-lg shadow-orange-400/20">
+                  <Phone className="w-5 h-5 lg:w-6 lg:h-6" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold uppercase tracking-widest text-slate-500 mb-1">Call Us</h4>
-                  <p className="text-2xl font-bold text-black">+91-80-2346-6288</p>
+                  <h4 className="text-[9px] lg:text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-0.5">Call Us</h4>
+                  <p className="text-lg lg:text-xl font-bold text-black">+91-80-2346-6288</p>
                 </div>
               </div>
-              <div className="flex items-center gap-6 p-6 rounded-2xl bg-slate-50 border border-slate-100 shadow-sm">
-                <div className="w-14 h-14 bg-slate-900 rounded-xl flex items-center justify-center text-white shadow-lg">
-                  <Mail className="w-7 h-7" />
+              <div className="flex items-center gap-3 lg:gap-4 p-4 lg:p-5 rounded-xl bg-slate-50 border border-slate-100 shadow-sm">
+                <div className="w-10 h-10 lg:w-12 lg:h-12 bg-slate-900 rounded-lg flex items-center justify-center text-white shadow-lg">
+                  <Mail className="w-5 h-5 lg:w-6 lg:h-6" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold uppercase tracking-widest text-slate-500 mb-1">Mail Us</h4>
-                  <p className="text-2xl font-bold text-black">info@acertax.com</p>
+                  <h4 className="text-[9px] lg:text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-0.5">Mail Us</h4>
+                  <p className="text-lg lg:text-xl font-bold text-black">info@acertax.com</p>
                 </div>
               </div>
             </div>
@@ -887,23 +887,23 @@ function Contact() {
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="bg-white p-10 lg:p-16 rounded-[3rem] text-black border border-slate-200 shadow-2xl relative overflow-hidden"
+            className="bg-white p-6 md:p-8 lg:p-12 rounded-2xl lg:rounded-[2rem] text-black border border-slate-200 shadow-xl relative overflow-hidden"
           >
-            <h3 className="text-3xl font-bold mb-8 font-display">Send a Message</h3>
-            <form className="space-y-6">
-              <div className="space-y-2">
-                <label className="text-xs font-bold uppercase tracking-widest text-slate-500">Your Name</label>
-                <input type="text" className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-4 focus:outline-none focus:border-orange-400 transition-colors" placeholder="Enter your name" />
+            <h3 className="text-xl lg:text-2xl font-bold mb-4 lg:mb-6 font-display">Send a Message</h3>
+            <form className="space-y-3 lg:space-y-4">
+              <div className="space-y-1.5">
+                <label className="text-[9px] lg:text-[10px] font-bold uppercase tracking-widest text-slate-500">Your Name</label>
+                <input type="text" className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-2.5 lg:py-3 focus:outline-none focus:border-orange-400 transition-colors text-sm" placeholder="Enter your name" />
               </div>
-              <div className="space-y-2">
-                <label className="text-xs font-bold uppercase tracking-widest text-slate-500">Email Address</label>
-                <input type="email" className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-4 focus:outline-none focus:border-orange-400 transition-colors" placeholder="Enter your email" />
+              <div className="space-y-1.5">
+                <label className="text-[9px] lg:text-[10px] font-bold uppercase tracking-widest text-slate-500">Email Address</label>
+                <input type="email" className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-2.5 lg:py-3 focus:outline-none focus:border-orange-400 transition-colors text-sm" placeholder="Enter your email" />
               </div>
-              <div className="space-y-2">
-                <label className="text-xs font-bold uppercase tracking-widest text-slate-500">Message</label>
-                <textarea rows={4} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-4 focus:outline-none focus:border-orange-400 transition-colors" placeholder="How can we help?"></textarea>
+              <div className="space-y-1.5">
+                <label className="text-[9px] lg:text-[10px] font-bold uppercase tracking-widest text-slate-500">Message</label>
+                <textarea rows={3} className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-2.5 lg:py-3 focus:outline-none focus:border-orange-400 transition-colors text-sm" placeholder="How can we help?"></textarea>
               </div>
-              <button className="w-full bg-orange-400 text-white py-5 rounded-xl font-bold text-lg hover:bg-orange-500 transition-all shadow-xl shadow-orange-400/30">
+              <button className="w-full bg-orange-400 text-white py-3 lg:py-4 rounded-lg font-bold text-sm lg:text-base hover:bg-orange-500 transition-all shadow-lg shadow-orange-400/30">
                 Submit Inquiry
               </button>
             </form>
