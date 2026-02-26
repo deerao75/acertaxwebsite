@@ -473,13 +473,13 @@ function Home({ setPage }: { setPage: (p: Page) => void }) {
               <h2 className="text-3xl font-bold text-black mb-6 font-display">Our Journey</h2>
               <div className="space-y-4 text-sm lg:text-base text-slate-600 leading-relaxed">
                 <p>
-                  Acer Tax & Corporate Services LLP is a firm of professionals with deep technical expertise in indirect taxation, direct taxation, regulatory, real estate, human resources and corporate services.
+                  Acer Tax & Corporate Services LLP is a multidisciplinary professional firm with deep technical expertise across indirect taxation, direct taxation, legal and regulatory advisory, real estate, human resources, and corporate services.
                 </p>
                 <p>
-                  The partners and consultants of the firm have combined experience of more than 60 years in global organizations such as PwC, E&Y, Deloitte and P&G.
+                  The firm’s partners and consultants bring together over 60 years of combined experience, having worked with leading global organizations such as PwC, EY, Deloitte, and Procter & Gamble.
                 </p>
                 <p>
-                  The team has extensive interactions with various tax & regulatory authorities and has hands-on experience with numerous multi-national clients.
+                  Our team has extensive engagement with tax and regulatory authorities and possesses strong, hands-on experience in advising and supporting multi-national clients across diverse sectors.
                 </p>
               </div>
               
