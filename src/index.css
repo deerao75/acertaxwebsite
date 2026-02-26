@@ -1,16 +1,41 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;700&display=swap');
 @import "tailwindcss";
 
 @theme {
   --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Playfair Display", serif;
+  
+  /* New Branding Fonts */
+  /* Cormorant Garamond provides a sense of established trust and authority */
+  --font-brand: "Cormorant Garamond", serif;
+  
+  /* Inter is clean and modern, perfect for professional taglines */
+  --font-tagline: "Inter", sans-serif;
+  
+  /* Retaining Jakarta for general display headers */
+  --font-display: "Plus Jakarta Sans", sans-serif;
 }
 
 @layer base {
   html {
-    font-size: 18px;
+    /* Set to 15px for laptops to keep spacing tight and prevent vertical overflow */
+    font-size: 15px;
   }
+  
+  @media (min-width: 1536px) {
+    /* Scale up to 18px only on large 2K/4K monitors */
+    html {
+      font-size: 18px;
+    }
+  }
+
   p {
     text-align: justify;
+    line-height: 1.6;
+  }
+}
+
+@layer utilities {
+  .section-compact {
+    @apply py-8 lg:py-16;
   }
 }

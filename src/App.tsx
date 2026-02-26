@@ -321,14 +321,19 @@ export default function App() {
           </motion.div>
         </AnimatePresence>
       </main>
-
+      
       {/* Footer */}
       <footer className="bg-black text-white py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-6">
             <div className="col-span-1 md:col-span-2 space-y-3">
               <div className="flex items-center gap-3">
-                <img src="/input_file_5.png" alt="Acer Logo" className="h-10 w-auto object-contain brightness-0 invert" />
+                {/* Fixed: Removed brightness-0 invert so logo is visible */}
+                <img 
+                  src="/input_file_5.png" 
+                  alt="Acer Logo" 
+                  className="h-10 w-auto object-contain" 
+                />
                 <div className="flex flex-col">
                   <span className="text-xl font-extrabold tracking-tight text-white font-display leading-none">Acer Tax</span>
                   <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Tax and Corporate Services</span>
@@ -436,17 +441,37 @@ function Home({ setPage }: { setPage: (p: Page) => void }) {
         </div>
       </section>
 
-      {/* Our Journey */}
-      <section className="py-12 md:py-16 lg:py-20 bg-white">
+{/* Our Journey - Image Left, Content Right */}
+      <section className="py-10 lg:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+            
+            {/* Professional Road Image on the Left */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="relative"
             >
-              <h2 className="text-2xl lg:text-3xl font-bold text-black mb-4 lg:mb-6 font-display">Our Journey</h2>
-              <div className="space-y-3 lg:space-y-4 text-sm lg:text-base text-slate-600 leading-relaxed">
+              <div className="absolute -inset-4 bg-slate-50 rounded-2xl -z-10" />
+              <img 
+                src="https://images.unsplash.com/photo-1470075801209-17f9ec0cada6?q=80&w=800&auto=format&fit=crop" 
+                alt="Long open road symbolizing a journey" 
+                className="rounded-2xl shadow-lg object-cover w-full h-[280px] lg:h-[380px]"
+                referrerPolicy="no-referrer"
+              />
+            </motion.div>
+
+            {/* Content on the Right */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="text-3xl font-bold text-black mb-6 font-display">Our Journey</h2>
+              <div className="space-y-4 text-sm lg:text-base text-slate-600 leading-relaxed">
                 <p>
                   Acer Tax & Corporate Services LLP is a firm of professionals with deep technical expertise in indirect taxation, direct taxation, regulatory, real estate, human resources and corporate services.
                 </p>
@@ -454,34 +479,22 @@ function Home({ setPage }: { setPage: (p: Page) => void }) {
                   The partners and consultants of the firm have combined experience of more than 60 years in global organizations such as PwC, E&Y, Deloitte and P&G.
                 </p>
                 <p>
-                  The team has extensive interactions with various tax & regulatory authorities and has hands-on experience with numerous multi-national clients. We are proactive in understanding the needs and expectations of clients and have wide spread engagement management experience across sectors.
+                  The team has extensive interactions with various tax & regulatory authorities and has hands-on experience with numerous multi-national clients.
                 </p>
               </div>
-              <div className="mt-6 lg:mt-8 grid grid-cols-2 gap-4 lg:gap-6">
-                <div>
-                  <div className="text-2xl lg:text-3xl font-bold text-orange-400 mb-1">60+</div>
-                  <div className="text-[10px] lg:text-xs font-bold text-slate-500 uppercase tracking-widest">Years Experience</div>
+              
+              <div className="mt-8 grid grid-cols-2 gap-6">
+                <div className="border-l-2 border-orange-400 pl-4">
+                  <div className="text-3xl font-bold text-orange-400 mb-1">60+</div>
+                  <div className="text-[10px] font-bold text-slate-500 uppercase tracking-widest font-tagline">Years Experience</div>
                 </div>
-                <div>
-                  <div className="text-2xl lg:text-3xl font-bold text-orange-400 mb-1">100%</div>
-                  <div className="text-[10px] lg:text-xs font-bold text-slate-500 uppercase tracking-widest">Client Delight</div>
+                <div className="border-l-2 border-orange-400 pl-4">
+                  <div className="text-3xl font-bold text-orange-400 mb-1">100%</div>
+                  <div className="text-[10px] font-bold text-slate-500 uppercase tracking-widest font-tagline">Client Delight</div>
                 </div>
               </div>
             </motion.div>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              className="relative"
-            >
-              <div className="absolute -inset-3 bg-orange-50 rounded-2xl -z-10" />
-              <img 
-                src="https://picsum.photos/seed/journey/800/600" 
-                alt="Our Journey" 
-                className="rounded-2xl shadow-md object-cover w-full h-[250px] lg:h-[350px]"
-                referrerPolicy="no-referrer"
-              />
-            </motion.div>
+
           </div>
         </div>
       </section>
@@ -821,26 +834,27 @@ function TeamCard({ member, idx, onClick }: any) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: idx * 0.1 }}
-      whileHover={{ y: -10 }}
+      whileHover={{ y: -5 }}
       onClick={onClick}
-      className="bg-white rounded-3xl border border-orange-50 overflow-hidden group shadow-sm hover:shadow-2xl transition-all cursor-pointer max-w-sm mx-auto w-full"
+      className="bg-white rounded-xl border border-orange-50 overflow-hidden group shadow-sm hover:shadow-md transition-all cursor-pointer max-w-sm mx-auto w-full"
     >
-      <div className="aspect-[4/3] bg-slate-100 relative overflow-hidden">
+      {/* Changed aspect-ratio to 1/1 (square) and used object-top to keep heads in frame */}
+      <div className="aspect-square bg-slate-50 relative overflow-hidden">
         <img 
           src={member.image} 
           alt={member.name}
-          className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+          className="w-full h-full object-contain object-top grayscale group-hover:grayscale-0 transition-all duration-700 p-2"
           referrerPolicy="no-referrer"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6 lg:p-8">
-          <div className="bg-orange-400 text-white p-2 lg:p-3 rounded-xl shadow-lg">
-            <ArrowRight className="w-5 h-5 lg:w-6 lg:h-6" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+          <div className="bg-orange-400 text-white p-2 rounded-lg shadow-lg">
+            <ArrowRight className="w-4 h-4" />
           </div>
         </div>
       </div>
-      <div className="p-6 lg:p-8">
-        <h3 className="text-xl lg:text-2xl font-bold text-black mb-1 lg:mb-2 font-display">{member.name}</h3>
-        <p className="text-orange-500 font-bold text-[11px] lg:text-sm uppercase tracking-widest">{member.role}</p>
+      <div className="p-4">
+        <h3 className="text-lg font-bold text-black mb-1 font-display">{member.name}</h3>
+        <p className="text-orange-500 font-bold text-[10px] uppercase tracking-widest">{member.role}</p>
       </div>
     </motion.div>
   );
