@@ -861,66 +861,65 @@ function TeamCard({ member, idx, onClick }: any) {
 }
 
 function Contact() {
-  return (
-    <section className="py-12 md:py-16 lg:py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-          >
-            <h1 className="text-3xl lg:text-4xl font-bold mb-4 lg:mb-6 font-display leading-tight">Contact <span className="text-orange-400">Us</span></h1>
-            <p className="text-base lg:text-lg text-slate-600 mb-6 lg:mb-10 leading-relaxed">
-              We are here to help you with your tax, regulatory, and corporate needs. Reach out to us for expert guidance.
-            </p>
-            
-            <div className="space-y-3 lg:space-y-4">
-              <div className="flex items-center gap-3 lg:gap-4 p-4 lg:p-5 rounded-xl bg-slate-50 border border-slate-100 shadow-sm">
-                <div className="w-10 h-10 lg:w-12 lg:h-12 bg-orange-400 rounded-lg flex items-center justify-center text-white shadow-lg shadow-orange-400/20">
-                  <Phone className="w-5 h-5 lg:w-6 lg:h-6" />
-                </div>
-                <div>
-                  <h4 className="text-[9px] lg:text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-0.5">Call Us</h4>
-                  <p className="text-lg lg:text-xl font-bold text-black">+91-80-2346-6288</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-3 lg:gap-4 p-4 lg:p-5 rounded-xl bg-slate-50 border border-slate-100 shadow-sm">
-                <div className="w-10 h-10 lg:w-12 lg:h-12 bg-slate-900 rounded-lg flex items-center justify-center text-white shadow-lg">
-                  <Mail className="w-5 h-5 lg:w-6 lg:h-6" />
-                </div>
-                <div>
-                  <h4 className="text-[9px] lg:text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-0.5">Mail Us</h4>
-                  <p className="text-lg lg:text-xl font-bold text-black">info@acertax.com</p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
+  const [formData, setFormData] = React.useState({ name: '', email: '', message: '' });
+  const [status, setStatus] = React.useState<'idle' | 'sending' | 'success' | 'error'>('idle');
 
-          <motion.div 
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="bg-white p-6 md:p-8 lg:p-12 rounded-2xl lg:rounded-[2rem] text-black border border-slate-200 shadow-xl relative overflow-hidden"
-          >
-            <h3 className="text-xl lg:text-2xl font-bold mb-4 lg:mb-6 font-display">Send a Message</h3>
-            <form className="space-y-3 lg:space-y-4">
-              <div className="space-y-1.5">
-                <label className="text-[9px] lg:text-[10px] font-bold uppercase tracking-widest text-slate-500">Your Name</label>
-                <input type="text" className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-2.5 lg:py-3 focus:outline-none focus:border-orange-400 transition-colors text-sm" placeholder="Enter your name" />
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus('sending');
+
+    try {
+      // Replace with your actual Hostinger domain (e.g., https://acertax.com/contact.php)
+      const response = await fetch('https://your-hostinger-domain.com/contact.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setStatus('success');
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        setStatus('error');
+      }
+    } catch (error) {
+      setStatus('error');
+    }
+  };
+
+  return (
+    <section className="py-12 md:py-20 bg-white">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+          {/* Left Column - Contact Info */}
+          <div>
+            <h1 className="text-4xl font-bold mb-6 font-display">Contact <span className="text-orange-400">Us</span></h1>
+            <p className="text-slate-600 mb-8 text-lg">Partner with experts to manage your tax and regulatory needs.</p>
+            {/* ... keep your phone/email detail blocks here ... */}
+          </div>
+
+          {/* Right Column - The Form */}
+          <motion.div className="bg-white p-10 rounded-[2rem] border border-slate-200 shadow-2xl relative">
+            {status === 'success' ? (
+              <div className="text-center py-10">
+                <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <ShieldCheck className="w-8 h-8" />
+                </div>
+                <h3 className="text-2xl font-bold mb-2">Message Sent!</h3>
+                <p className="text-slate-500">Thank you. Your inquiry has been sent to info@acertax.com.</p>
+                <button onClick={() => setStatus('idle')} className="mt-6 text-orange-500 font-bold underline">Send another message</button>
               </div>
-              <div className="space-y-1.5">
-                <label className="text-[9px] lg:text-[10px] font-bold uppercase tracking-widest text-slate-500">Email Address</label>
-                <input type="email" className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-2.5 lg:py-3 focus:outline-none focus:border-orange-400 transition-colors text-sm" placeholder="Enter your email" />
-              </div>
-              <div className="space-y-1.5">
-                <label className="text-[9px] lg:text-[10px] font-bold uppercase tracking-widest text-slate-500">Message</label>
-                <textarea rows={3} className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-2.5 lg:py-3 focus:outline-none focus:border-orange-400 transition-colors text-sm" placeholder="How can we help?"></textarea>
-              </div>
-              <button className="w-full bg-orange-400 text-white py-3 lg:py-4 rounded-lg font-bold text-sm lg:text-base hover:bg-orange-500 transition-all shadow-lg shadow-orange-400/30">
-                Submit Inquiry
-              </button>
-            </form>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <input required type="text" placeholder="Your Name" value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 outline-none focus:border-orange-400" />
+                <input required type="email" placeholder="Email Address" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 outline-none focus:border-orange-400" />
+                <textarea required rows={4} placeholder="How can we help?" value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value})} className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 outline-none focus:border-orange-400" />
+                <button type="submit" disabled={status === 'sending'} className={`w-full py-4 rounded-lg font-bold text-white shadow-lg ${status === 'sending' ? 'bg-slate-400' : 'bg-orange-400 hover:bg-orange-500 shadow-orange-400/30'}`}>
+                  {status === 'sending' ? 'Sending...' : 'Submit Inquiry'}
+                </button>
+                {status === 'error' && <p className="text-red-500 text-sm text-center mt-2">Could not send. Please check your connection.</p>}
+              </form>
+            )}
           </motion.div>
         </div>
       </div>

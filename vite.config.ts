@@ -6,8 +6,8 @@ import {defineConfig, loadEnv} from 'vite';
 export default defineConfig(({mode}) => {
   const env = loadEnv(mode, '.', '');
   return {
-    // This line ensures assets are loaded from the correct sub-directory on GitHub Pages
-    base: '/acertaxwebsite/', 
+    // Changed base to '/' for root domain hosting on Hostinger
+    base: '/', 
     plugins: [react(), tailwindcss()],
     define: {
       'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
