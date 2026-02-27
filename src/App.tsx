@@ -861,28 +861,34 @@ function TeamCard({ member, idx, onClick }: any) {
 }
 
 function Contact() {
-  // State to handle form inputs
   const [formData, setFormData] = React.useState({
     name: '',
     email: '',
     message: ''
   });
+  const [status, setStatus] = React.useState<'idle' | 'sending' | 'success' | 'error'>('idle');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setStatus('sending');
 
-    const recipient = "info@acertax.com";
-    const subject = encodeURIComponent(`Inquiry from ${formData.name}`);
-    
-    // Constructing the email body
-    const body = encodeURIComponent(
-      `Name: ${formData.name}\n` +
-      `Email: ${formData.email}\n\n` +
-      `Message:\n${formData.message}`
-    );
+    try {
+      // This calls the PHP script we will put on your Hostinger server
+      const response = await fetch('/contact.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
 
-    // Opens the user's default mail app
-    window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+      if (response.ok) {
+        setStatus('success');
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        setStatus('error');
+      }
+    } catch (error) {
+      setStatus('error');
+    }
   };
 
   return (
@@ -927,49 +933,63 @@ function Contact() {
             viewport={{ once: true }}
             className="bg-white p-6 md:p-8 lg:p-12 rounded-2xl lg:rounded-[2rem] text-black border border-slate-200 shadow-xl relative overflow-hidden"
           >
-            <h3 className="text-xl lg:text-2xl font-bold mb-4 lg:mb-6 font-display">Send a Message</h3>
-            
-            <form onSubmit={handleSubmit} className="space-y-3 lg:space-y-4">
-              <div className="space-y-1.5">
-                <label className="text-[9px] lg:text-[10px] font-bold uppercase tracking-widest text-slate-500">Your Name</label>
-                <input 
-                  required
-                  type="text" 
-                  value={formData.name}
-                  onChange={(e) => setFormData({...formData, name: e.target.value})}
-                  className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-2.5 lg:py-3 focus:outline-none focus:border-orange-400 transition-colors text-sm" 
-                  placeholder="Enter your name" 
-                />
+            {status === 'success' ? (
+              <div className="text-center py-10">
+                <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                   <span className="text-2xl">✓</span>
+                </div>
+                <h3 className="text-2xl font-bold mb-2">Message Sent!</h3>
+                <p className="text-slate-500 mb-6">Thank you. We will get back to you shortly.</p>
+                <button onClick={() => setStatus('idle')} className="text-orange-500 font-bold underline">Send another message</button>
               </div>
-              <div className="space-y-1.5">
-                <label className="text-[9px] lg:text-[10px] font-bold uppercase tracking-widest text-slate-500">Email Address</label>
-                <input 
-                  required
-                  type="email" 
-                  value={formData.email}
-                  onChange={(e) => setFormData({...formData, email: e.target.value})}
-                  className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-2.5 lg:py-3 focus:outline-none focus:border-orange-400 transition-colors text-sm" 
-                  placeholder="Enter your email" 
-                />
-              </div>
-              <div className="space-y-1.5">
-                <label className="text-[9px] lg:text-[10px] font-bold uppercase tracking-widest text-slate-500">Message</label>
-                <textarea 
-                  required
-                  rows={3} 
-                  value={formData.message}
-                  onChange={(e) => setFormData({...formData, message: e.target.value})}
-                  className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-2.5 lg:py-3 focus:outline-none focus:border-orange-400 transition-colors text-sm" 
-                  placeholder="How can we help?"
-                ></textarea>
-              </div>
-              <button 
-                type="submit" 
-                className="w-full bg-orange-400 text-white py-3 lg:py-4 rounded-lg font-bold text-sm lg:text-base hover:bg-orange-500 transition-all shadow-lg shadow-orange-400/30"
-              >
-                Submit Inquiry
-              </button>
-            </form>
+            ) : (
+              <>
+                <h3 className="text-xl lg:text-2xl font-bold mb-4 lg:mb-6 font-display">Send a Message</h3>
+                <form onSubmit={handleSubmit} className="space-y-3 lg:space-y-4">
+                  <div className="space-y-1.5">
+                    <label className="text-[9px] lg:text-[10px] font-bold uppercase tracking-widest text-slate-500">Your Name</label>
+                    <input 
+                      required
+                      type="text" 
+                      value={formData.name}
+                      onChange={(e) => setFormData({...formData, name: e.target.value})}
+                      className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-2.5 lg:py-3 focus:outline-none focus:border-orange-400 transition-colors text-sm" 
+                      placeholder="Enter your name" 
+                    />
+                  </div>
+                  <div className="space-y-1.5">
+                    <label className="text-[9px] lg:text-[10px] font-bold uppercase tracking-widest text-slate-500">Email Address</label>
+                    <input 
+                      required
+                      type="email" 
+                      value={formData.email}
+                      onChange={(e) => setFormData({...formData, email: e.target.value})}
+                      className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-2.5 lg:py-3 focus:outline-none focus:border-orange-400 transition-colors text-sm" 
+                      placeholder="Enter your email" 
+                    />
+                  </div>
+                  <div className="space-y-1.5">
+                    <label className="text-[9px] lg:text-[10px] font-bold uppercase tracking-widest text-slate-500">Message</label>
+                    <textarea 
+                      required
+                      rows={3} 
+                      value={formData.message}
+                      onChange={(e) => setFormData({...formData, message: e.target.value})}
+                      className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-2.5 lg:py-3 focus:outline-none focus:border-orange-400 transition-colors text-sm" 
+                      placeholder="How can we help?"
+                    ></textarea>
+                  </div>
+                  <button 
+                    type="submit" 
+                    disabled={status === 'sending'}
+                    className={`w-full py-3 lg:py-4 rounded-lg font-bold text-sm lg:text-base transition-all shadow-lg ${status === 'sending' ? 'bg-slate-400' : 'bg-orange-400 text-white hover:bg-orange-500 shadow-orange-400/30'}`}
+                  >
+                    {status === 'sending' ? 'Sending...' : 'Submit Inquiry'}
+                  </button>
+                  {status === 'error' && <p className="text-red-500 text-xs mt-2 text-center">Something went wrong. Please try again.</p>}
+                </form>
+              </>
+            )}
           </motion.div>
         </div>
       </div>
