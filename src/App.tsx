@@ -473,10 +473,10 @@ function Home({ setPage }: { setPage: (p: Page) => void }) {
               <h2 className="text-3xl font-bold text-black mb-6 font-display">Our Journey</h2>
               <div className="space-y-4 text-sm lg:text-base text-slate-600 leading-relaxed">
                 <p>
-                  Acer Tax & Corporate Services LLP is a multidisciplinary professional firm with deep technical expertise across indirect taxation, direct taxation, legal and regulatory advisory, real estate, human resources, and corporate services.
+                  Acer Tax & Corporate Services LLP is a multidisciplinary professional firm with deep technical expertise across indirect taxation, direct taxation, legal and regulatory, real estate, human resources, and corporate services.
                 </p>
                 <p>
-                  The firm’s partners and consultants bring together over 60 years of combined experience, having worked with leading global organizations such as PwC, EY, Deloitte, and Procter & Gamble.
+                  The firm’s partners and consultants bring together over 70 years of combined experience, having worked with leading global organizations such as PwC, EY, Deloitte, and Procter & Gamble.
                 </p>
                 <p>
                   Our team has extensive engagement with tax and regulatory authorities and possesses strong, hands-on experience in advising and supporting multi-national clients across diverse sectors.
@@ -485,7 +485,7 @@ function Home({ setPage }: { setPage: (p: Page) => void }) {
               
               <div className="mt-8 grid grid-cols-2 gap-6">
                 <div className="border-l-2 border-orange-400 pl-4">
-                  <div className="text-3xl font-bold text-orange-400 mb-1">60+</div>
+                  <div className="text-3xl font-bold text-orange-400 mb-1">70+</div>
                   <div className="text-[10px] font-bold text-slate-500 uppercase tracking-widest font-tagline">Years Experience</div>
                 </div>
                 <div className="border-l-2 border-orange-400 pl-4">
@@ -510,7 +510,7 @@ function Home({ setPage }: { setPage: (p: Page) => void }) {
           >
             <div className="max-w-2xl">
               <h2 className="text-2xl lg:text-3xl font-bold text-black mb-2 font-display">What We Do</h2>
-              <p className="text-sm lg:text-base text-slate-600 leading-relaxed">We partner with our clients to manage their end-to-end tax and regulatory needs.</p>
+              <p className="text-sm lg:text-base text-slate-600 leading-relaxed">We partner with our clients to manage their end-to-end tax, legal and regulatory needs.</p>
             </div>
             <button 
               onClick={() => setPage('services')}
@@ -564,10 +564,10 @@ function Home({ setPage }: { setPage: (p: Page) => void }) {
 
 function About() {
   const valueProps = [
-    "Deep technical expertise in indirect taxation, direct taxation, regulatory, real estate, human resources and corporate services",
+    "Deep technical expertise in indirect taxation, direct taxation, legal, regulatory, real estate, human resources and corporate services",
     "Supported by team of experts / specialist in tax advisory, compliance and litigation",
     "60 years of combined experience in global organizations such as PwC, E&Y, Deloitte and P&G",
-    "Extensive interactions with various tax & regulatory authorities",
+    "Extensive interactions with various tax, legal & regulatory authorities",
     "Hands-on experience with numerous multi-national clients",
     "Proactive approach in understanding the needs and expectations of clients",
     "Wide spread engagement management experience across sectors",
@@ -585,7 +585,7 @@ function About() {
           >
             <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 lg:mb-6 font-display leading-tight">Get to Know <span className="text-orange-400">Us</span></h1>
             <p className="text-lg lg:text-xl text-slate-700 font-medium leading-relaxed mb-4 lg:mb-6">
-              Your One-Stop Solution for Tax, Regulatory, and Corporate Excellence.
+              Your One-Stop Solution for Tax, Legal, Regulatory, and Corporate Excellence.
             </p>
             <p className="text-sm lg:text-base text-slate-600 leading-relaxed">
               Acer Tax & Corporate Services LLP is built on a foundation of trust, excellence, and deep industry knowledge. We pride ourselves on being more than just consultants; we are strategic partners in our clients' growth journeys.
@@ -626,7 +626,7 @@ function About() {
             className="bg-slate-50 p-6 lg:p-8 rounded-2xl border-t-4 border-slate-900 shadow-sm"
           >
             <h3 className="text-[10px] font-bold mb-3 uppercase tracking-widest text-slate-600">Our Mission</h3>
-            <p className="text-base lg:text-lg font-semibold text-black leading-relaxed">To be the preferred service provider on India tax, regulatory and corporate matters.</p>
+            <p className="text-base lg:text-lg font-semibold text-black leading-relaxed">To be the preferred service provider on India tax, legal, regulatory and corporate matters.</p>
           </motion.div>
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -902,7 +902,7 @@ function Contact() {
           >
             <h1 className="text-3xl lg:text-4xl font-bold mb-4 lg:mb-6 font-display leading-tight">Contact <span className="text-orange-400">Us</span></h1>
             <p className="text-base lg:text-lg text-slate-600 mb-6 lg:mb-10 leading-relaxed">
-              We are here to help you with your tax, regulatory, and corporate needs. Reach out to us for expert guidance.
+              We are here to help you with your tax, legal, regulatory, and corporate needs. Reach out to us for expert guidance.
             </p>
             
             <div className="space-y-3 lg:space-y-4">
