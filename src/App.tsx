@@ -405,7 +405,7 @@ function Home({ setPage }: { setPage: (p: Page) => void }) {
                 Tax. Regulatory. <span className="text-orange-400 underline decoration-yellow-300 decoration-4 underline-offset-8">Corporate.</span>
               </h1>
               <p className="text-base lg:text-lg text-slate-600 mb-6 lg:mb-8 leading-relaxed max-w-xl">
-                Expert tax advisory, compliance, and litigation services. Our team of professionals ensures seamless tax solutions for businesses of all sizes.
+                Expert advisory, compliance, and litigation services in tax, legal, and regulatory matters. Our team of professionals ensures seamless tax solutions for businesses of all sizes.
               </p>
               <div className="flex flex-wrap gap-3">
                 <button 
