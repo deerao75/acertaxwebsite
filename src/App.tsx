@@ -340,7 +340,7 @@ export default function App() {
                 </div>
               </div>
               <p className="text-slate-400 max-w-md leading-relaxed text-sm">
-                Expert tax advisory, compliance, and litigation services. Our team of professionals ensures seamless tax solutions for businesses of all sizes.
+                Expert advisory, compliance, and litigation services in tax, legal, and regulatory matters. Our team of professionals ensures seamless tax solutions for businesses of all sizes.
               </p>
               <div className="flex gap-4">
                 <a href="https://www.linkedin.com/company/acer-tax-&-corporate-services-llp/" target="_blank" rel="noreferrer" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-orange-400 transition-all">
