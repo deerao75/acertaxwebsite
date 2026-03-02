@@ -369,6 +369,14 @@ export default function App() {
                   <Mail className="w-4 h-4 text-orange-400" />
                   info@acertax.com
                 </li>
+                <li className="flex items-start gap-3 mt-4">
+                  <Building2 className="w-4 h-4 text-orange-400 mt-1 flex-shrink-0" />
+                  <span className="leading-relaxed">
+                    Acer Tax & Corporate Services LLP,<br />
+                    No. 8, 3rd Floor, Serpentine Road,<br />
+                    Kumarapark East, Bangalore - 560020
+                  </span>
+                </li>
               </ul>
             </div>
           </div>
@@ -939,7 +947,7 @@ function Contact() {
                    <span className="text-2xl">✓</span>
                 </div>
                 <h3 className="text-2xl font-bold mb-2">Message Sent!</h3>
-                <p className="text-slate-500 mb-6">Thank you. We will get back to you shortly.</p>
+                <p className="text-slate-500 mb-6 text-center">Thank you. We will get back to you shortly.</p>
                 <button onClick={() => setStatus('idle')} className="text-orange-500 font-bold underline">Send another message</button>
               </div>
             ) : (
