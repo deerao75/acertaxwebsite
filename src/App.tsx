@@ -198,6 +198,8 @@ const teamData = [
 export default function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeModal, setActiveModal] = useState<'privacy' | 'terms' | null>(null);
+
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -226,6 +228,32 @@ export default function App() {
       default:
         return <Home setPage={setCurrentPage} />;
     }
+  };
+
+  const Modal = ({ title, content, onClose }: { title: string; content: string[]; onClose: () => void }) => (
+    <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
+      <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="bg-white rounded-2xl p-6 md:p-10 max-w-2xl w-full relative shadow-2xl">
+        <button onClick={onClose} className="absolute top-4 right-4 p-2 text-slate-400 hover:text-black transition-colors"><X /></button>
+        <h3 className="text-2xl font-bold mb-6 font-display text-orange-400">{title}</h3>
+        <div className="space-y-4 text-slate-600 text-sm leading-relaxed">
+          {content.map((para, i) => <p key={i}>{para}</p>)}
+        </div>
+        <button onClick={onClose} className="mt-8 w-full bg-slate-900 text-white py-3 rounded-xl font-bold hover:bg-black transition-all">Close</button>
+      </motion.div>
+    </div>
+  );
+
+  const policyContent = {
+    privacy: [
+      "At Acer Tax & Corporate Services LLP, we are committed to protecting your privacy. We collect only the necessary information required to provide our tax and corporate advisory services efficiently and securely.",
+      "Your data is never shared with third parties for marketing purposes. We implement industry-standard security measures to ensure that your personal and professional details remain confidential and protected from unauthorized access.",
+      "By using our website, you consent to our data practices. We may update this policy periodically to reflect changes in our services or regulatory requirements in India."
+    ],
+    terms: [
+      "By accessing this website, you agree to be bound by these Terms of Service and all applicable laws and regulations in India. The content provided on this site is for informational purposes related to tax and corporate services.",
+      "Acer Tax & Corporate Services LLP reserves the right to modify or discontinue any aspect of the website or our services at any time without prior notice. Unauthorized use of this website's content is strictly prohibited.",
+      "Our liability is limited to the maximum extent permitted by law. We strive for accuracy but do not guarantee that the information provided is free from errors or omissions."
+    ]
   };
 
   return (
@@ -383,11 +411,18 @@ export default function App() {
           <div className="pt-6 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-slate-500 text-[11px]">
             <p>© {new Date().getFullYear()} Acer Tax & Corporate Services LLP. All rights reserved.</p>
             <div className="flex gap-6">
-              <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-              <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+              <button onClick={() => setActiveModal('privacy')} className="hover:text-white transition-colors">Privacy Policy</button>
+              <button onClick={() => setActiveModal('terms')} className="hover:text-white transition-colors">Terms of Service</button>
             </div>
           </div>
         </div>
+        {activeModal && (
+          <Modal 
+            title={activeModal === 'privacy' ? 'Privacy Policy' : 'Terms of Service'} 
+            content={policyContent[activeModal]} 
+            onClose={() => setActiveModal(null)} 
+          />
+        )}
       </footer>
     </div>
   );
