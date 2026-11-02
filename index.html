@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>POSH Training Centre</title>
+<style>
+  :root {
+    --navy: #111111;
+    --ink: #111111;
+    --gold: #111111;
+    --gold-2: #111111;
+    --cream: #ffffff;
+    --wash: #f6c98a;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    color: var(--ink);
+    background: var(--cream);
+    font-family: Calibri, "Segoe UI", sans-serif;
+  }
+  h1, h2 { font-family: Georgia, "Palatino Linotype", serif; font-weight: normal; }
+  a { color: inherit; }
+  .top {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 22px 48px;
+    background: var(--wash);
+    color: var(--navy);
+  }
+  .brand { text-decoration: none; line-height: 1.1; }
+  .brand small {
+    display: block;
+    color: var(--gold-2);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    margin-bottom: 4px;
+  }
+  .brand strong {
+    font-family: Georgia, "Palatino Linotype", serif;
+    font-size: 34px;
+    font-weight: normal;
+  }
+  .menu {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .menu a {
+    text-decoration: none;
+    color: var(--navy);
+    font-size: 22px;
+    padding: 10px 16px;
+  }
+  .menu a:hover { color: var(--gold-2); }
+  .menu button {
+    background: #111;
+    color: #fff;
+    border: 0;
+    font: inherit;
+    font-size: 18px;
+    font-weight: 700;
+    padding: 8px 14px;
+    cursor: pointer;
+  }
+  .menu button[hidden] { display: none; }
+  .banner {
+    position: relative;
+    flex: 1 0 auto;
+    min-height: 640px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: var(--cream);
+  }
+  .wash {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 78%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 22%;
+    -webkit-mask-image:
+      linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.55) 16%, #000 46%),
+      linear-gradient(180deg, transparent 0%, #000 8%, #000 84%, transparent 100%);
+    mask-image:
+      linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.55) 16%, #000 46%),
+      linear-gradient(180deg, transparent 0%, #000 8%, #000 84%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
+    pointer-events: none;
+  }
+  .hero {
+    position: relative;
+    z-index: 1;
+    max-width: 560px;
+    padding: 72px 8px 72px 48px;
+    margin-left: max(48px, calc((100% - 1120px) / 2));
+  }
+  .hero h1 {
+    margin: 0 0 28px;
+    color: var(--navy);
+    font-size: 48px;
+    line-height: 1.15;
+  }
+  .btn {
+    display: inline-block;
+    text-decoration: none;
+    background: #111;
+    color: #fff;
+    font-weight: 700;
+    font-size: 20px;
+    padding: 14px 22px;
+  }
+  .foot {
+    background: #111;
+    color: #fff;
+  }
+  .legal {
+    margin: 0;
+    padding: 28px 48px;
+    color: #fff;
+    font-size: 22px;
+  }
+  @media (max-width: 800px) {
+    .top, .legal { padding-left: 20px; padding-right: 20px; }
+    .top { flex-wrap: wrap; padding-top: 18px; padding-bottom: 14px; }
+    .brand strong { font-size: 28px; }
+    .menu { width: 100%; justify-content: flex-end; }
+    .menu a { font-size: 18px; padding: 8px 10px; }
+    .banner { display: block; min-height: 0; }
+    .hero { max-width: none; margin-left: 0; padding: 36px 20px 12px; }
+    .hero h1 { font-size: 34px; }
+    .wash {
+      position: relative;
+      width: 100%;
+      height: 300px;
+      -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 42%);
+      mask-image: linear-gradient(180deg, transparent 0%, #000 42%);
+    }
+    .legal { font-size: 18px; }
+  }
+</style>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html">
+    <small>POSH</small>
+    <strong>Training Centre</strong>
+  </a>
+  <nav class="menu" aria-label="Page">
+    <a href="POSH-Training-Course.html">Start Training</a>
+    <a id="registerLink" href="POSH-Training-Course.html#register">Register</a>
+    <button id="logoutLink" type="button" hidden>Log out</button>
+  </nav>
+</header>
+<section class="banner">
+  <img class="wash" src="banner.jpg" alt="">
+  <div class="hero">
+    <h1>Prevention of sexual harassment at the workplace.</h1>
+    <a class="btn" href="POSH-Training-Course.html">Start training</a>
+  </div>
+</section>
+<footer class="foot">
+  <p class="legal">Training material, not legal advice.</p>
+</footer>
+<script>
+(function () {
+  var link = document.getElementById("registerLink");
+  try {
+    var db = JSON.parse(localStorage.getItem("posh-db-v1") || "null");
+    var loggedIn = db && db.sessionId && db.people && db.people.some(function (p) { return p.id === db.sessionId; });
+    var logout = document.getElementById("logoutLink");
+    if (loggedIn) {
+      link.textContent = "Logged In";
+      link.setAttribute("href", "POSH-Training-Course.html");
+      logout.hidden = false;
+    }
+    logout.onclick = function () {
+      try {
+        var current = JSON.parse(localStorage.getItem("posh-db-v1") || "null");
+        if (current) {
+          current.sessionId = null;
+          localStorage.setItem("posh-db-v1", JSON.stringify(current));
+        }
+      } catch (err) {}
+      try { sessionStorage.removeItem("posh-cert-live"); } catch (err2) {}
+      link.textContent = "Register";
+      link.setAttribute("href", "POSH-Training-Course.html#register");
+      logout.hidden = true;
+    };
+  } catch (e) {}
+})();
+</script>
+</body>
+</html>
