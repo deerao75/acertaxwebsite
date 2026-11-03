@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>POSH register</title>
+<style>
+  :root { --wash: #f6c98a; --ink: #111; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: Calibri, "Segoe UI", sans-serif; color: var(--ink); background: #fff; }
+  header { background: var(--wash); padding: 22px 28px; }
+  h1 { margin: 0; font-family: Georgia, "Palatino Linotype", serif; font-weight: normal; font-size: 32px; }
+  header p { margin: 6px 0 0; }
+  main { padding: 28px; }
+  form { display: flex; gap: 12px; align-items: end; margin-bottom: 22px; }
+  label { display: block; font-size: 13px; margin-bottom: 4px; }
+  input { border: 1px solid #111; padding: 10px 12px; font: inherit; font-size: 16px; min-width: 280px; }
+  button { background: #111; color: #fff; border: 0; padding: 11px 16px; font: inherit; font-size: 16px; cursor: pointer; }
+  .note { color: #333; }
+  .error { color: #c0392b; font-weight: 700; }
+  table { width: 100%; border-collapse: collapse; }
+  th, td { border-bottom: 1px solid #111; text-align: left; vertical-align: top; padding: 10px 12px; }
+  th { background: #111; color: #fff; font-weight: 700; }
+  .empty { padding: 12px 0; }
+</style>
+</head>
+<body>
+<header>
+  <h1>POSH register</h1>
+  <p>Who has registered, how far the test has gone, and whether a certificate was downloaded.</p>
+</header>
+<main>
+  <form id="gate">
+    <div>
+      <label for="password">Password</label>
+      <input id="password" type="password" autocomplete="current-password" required>
+    </div>
+    <button type="submit">Show the register</button>
+  </form>
+  <p id="message" class="note">A learner appears here after registering on this website.</p>
+  <div id="list"></div>
+</main>
+<script>
+(function () {
+  var form = document.getElementById("gate");
+  var message = document.getElementById("message");
+  var list = document.getElementById("list");
+  var passwordBox = document.getElementById("password");
+  try {
+    var saved = sessionStorage.getItem("posh-admin-key");
+    if (saved) passwordBox.value = saved;
+  } catch (err) {}
+
+  function text(value) {
+    return value == null || value === "" ? "—" : String(value);
+  }
+  function when(iso) {
+    if (!iso) return "—";
+    var d = new Date(iso);
+    if (isNaN(d.getTime())) return iso;
+    return d.toLocaleString("en-GB", { day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit" });
+  }
+  function status(row) {
+    if (row.finished) return "Completed";
+    if (row.passed > 0) return "In progress";
+    return "Registered";
+  }
+  function certificate(row) {
+    if (row.certificate && row.certificate.downloaded) {
+      return row.certificate.id + " · " + row.certificate.iso;
+    }
+    if (row.finished) return "Not downloaded";
+    return "Not issued";
+  }
+  function cell(row, value) {
+    var td = document.createElement("td");
+    td.textContent = value;
+    row.appendChild(td);
+  }
+  function draw(people) {
+    list.innerHTML = "";
+    if (!people.length) {
+      message.textContent = "No one has registered yet.";
+      message.className = "note";
+      return;
+    }
+    message.textContent = people.length + (people.length === 1 ? " person has registered." : " people have registered.");
+    message.className = "note";
+    var table = document.createElement("table");
+    var head = document.createElement("tr");
+    ["Name", "Organisation", "Employee ID", "Designation", "Division", "Registered", "Test", "Topics passed", "Certificate"].forEach(function (label) {
+      var th = document.createElement("th");
+      th.textContent = label;
+      head.appendChild(th);
+    });
+    var thead = document.createElement("thead");
+    thead.appendChild(head);
+    table.appendChild(thead);
+    var body = document.createElement("tbody");
+    people.forEach(function (person) {
+      var tr = document.createElement("tr");
+      cell(tr, text(person.name));
+      cell(tr, text(person.org));
+      cell(tr, text(person.employeeId));
+      cell(tr, text(person.designation));
+      cell(tr, text(person.division));
+      cell(tr, when(person.registeredAt));
+      cell(tr, status(person));
+      cell(tr, String(person.passed || 0) + " of " + String(person.total || 15));
+      cell(tr, certificate(person));
+      body.appendChild(tr);
+    });
+    table.appendChild(body);
+    list.appendChild(table);
+  }
+  function load(password) {
+    message.textContent = "Loading the register…";
+    message.className = "note";
+    fetch("api.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ action: "list", password: password })
+    }).then(function (res) {
+      if (res.status === 401) throw new Error("password");
+      if (!res.ok) throw new Error("save");
+      return res.json();
+    }).then(function (data) {
+      try { sessionStorage.setItem("posh-admin-key", password); } catch (err) {}
+      draw(data.people || []);
+    }).catch(function (err) {
+      list.innerHTML = "";
+      message.className = "error";
+      message.textContent = err && err.message === "password"
+        ? "That password is not correct."
+        : "The register could not be loaded.";
+    });
+  }
+  form.onsubmit = function (ev) {
+    ev.preventDefault();
+    load(passwordBox.value);
+  };
+  if (passwordBox.value) load(passwordBox.value);
+})();
+</script>
+</body>
+</html>
