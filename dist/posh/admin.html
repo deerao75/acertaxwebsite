@@ -89,7 +89,7 @@
     message.className = "note";
     var table = document.createElement("table");
     var head = document.createElement("tr");
-    ["Name", "Organisation", "Employee ID", "Designation", "Division", "Registered", "Test", "Topics passed", "Certificate"].forEach(function (label) {
+    ["Name", "Organisation", "Employee ID", "Designation", "Division", "Registered", "Test", "Topics passed", "Certificate", ""].forEach(function (label) {
       var th = document.createElement("th");
       th.textContent = label;
       head.appendChild(th);
@@ -109,6 +109,26 @@
       cell(tr, status(person));
       cell(tr, String(person.passed || 0) + " of " + String(person.total || 15));
       cell(tr, certificate(person));
+      var action = document.createElement("td");
+      var remove = document.createElement("button");
+      remove.type = "button";
+      remove.textContent = "Remove";
+      remove.onclick = function () {
+        if (!window.confirm("Remove " + text(person.name) + " from the register?")) return;
+        fetch("api.php", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ action: "remove", password: passwordBox.value, id: person.id })
+        }).then(function (res) {
+          if (!res.ok) throw new Error("save");
+          load(passwordBox.value);
+        }).catch(function () {
+          message.className = "error";
+          message.textContent = "That row could not be removed.";
+        });
+      };
+      action.appendChild(remove);
+      tr.appendChild(action);
       body.appendChild(tr);
     });
     table.appendChild(body);

@@ -90,6 +90,17 @@ if ($action === "list") {
   respond(200, array("ok" => true, "people" => $people));
 }
 
+if ($action === "remove") {
+  if (!password_ok(isset($body["password"]) ? $body["password"] : "")) respond(401, array("ok" => false));
+  $removeId = isset($body["id"]) ? $body["id"] : "";
+  if (!preg_match('/^[A-Za-z0-9]{8,40}$/', $removeId)) respond(400, array("ok" => false));
+  with_records(function (&$data) use ($removeId) {
+    unset($data["people"][$removeId]);
+    return true;
+  });
+  respond(200, array("ok" => true));
+}
+
 if ($action !== "sync" || !isset($body["person"]) || !is_array($body["person"])) respond(400, array("ok" => false));
 
 $in = $body["person"];
