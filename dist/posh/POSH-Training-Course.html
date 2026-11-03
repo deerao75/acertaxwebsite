@@ -361,7 +361,40 @@ function loadDb() {
   } catch (e) {}
   return { people: [], sessionId: null, attempts: {} };
 }
-function saveDb() { localStorage.setItem(DB_KEY, JSON.stringify(db)); }
+function saveDb() {
+  localStorage.setItem(DB_KEY, JSON.stringify(db));
+  syncServer();
+}
+function syncServer() {
+  try {
+    const person = sessionPerson();
+    if (!person || typeof fetch !== "function") return;
+    const a = attempt();
+    const passed = COURSE.topics.filter((t) => a.cleared && a.cleared[t.n]).length;
+    const cert = a.cert && a.cert.downloaded ? { id: a.cert.id, iso: a.cert.iso, downloaded: true } : null;
+    fetch("https://www.acertax.com/posh/api.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        action: "sync",
+        person: {
+          id: person.id,
+          name: person.name,
+          employeeId: person.employeeId,
+          designation: person.designation,
+          division: person.division,
+          org: person.org,
+          registeredAt: person.at,
+          topic: a.finished ? COURSE.topics.length : (a.at || 1),
+          passed: passed,
+          total: COURSE.topics.length,
+          finished: !!a.finished,
+          certificate: cert
+        }
+      })
+    }).catch(function () {});
+  } catch (err) {}
+}
 function newId() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 8); }
 function sessionPerson() {
   if (!db.sessionId) return null;
@@ -863,6 +896,7 @@ function buildPdf(c) {
 
 db = loadDb();
 enforceRetake();
+syncServer();
 view = openingView();
 
 function render() {

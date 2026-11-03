@@ -5,3 +5,9 @@ coverage/
 *.log
 .env*
 !.env.example
+public/posh/data/*.json
+public/posh/data/*.lock
+public/posh/data/*.tmp
+dist/posh/data/*.json
+dist/posh/data/*.lock
+dist/posh/data/*.tmp
